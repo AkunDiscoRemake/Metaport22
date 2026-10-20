@@ -95,7 +95,7 @@ int main() {
     metaport::publishFrame(block, frame);
 
     // --- Loader side ---
-    void* lib = dlopen(METAPORT_RUNTIME_PATH, RTLD_NOW | RTLD_LOCAL);
+    void* lib = dlopen(FORKXR_RUNTIME_PATH, RTLD_NOW | RTLD_LOCAL);
     if (!lib) { std::printf("dlopen failed: %s\n", dlerror()); return 2; }
     CHECK(dlsym(lib, "xrCreateInstance") == nullptr);  // only the negotiation entry is exported
     auto negotiate = reinterpret_cast<PFN_xrNegotiateLoaderRuntimeInterface>(dlsym(lib, "xrNegotiateLoaderRuntimeInterface"));

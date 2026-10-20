@@ -4,7 +4,7 @@
 
 #include "runtime.hpp"
 
-namespace mpxr {
+namespace forkxr {
 
 void refreshFrame(Session* s) {
     TrackingFrame f;
@@ -115,9 +115,9 @@ bool locateInWorld(Session* s, Space* space, XrTime time, Pose* out, bool* posit
     return false;
 }
 
-}  // namespace mpxr
+}  // namespace forkxr
 
-using namespace mpxr;
+using namespace forkxr;
 
 #ifdef __ANDROID__
 namespace {

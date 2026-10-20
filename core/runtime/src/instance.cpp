@@ -10,7 +10,7 @@
 
 #include "runtime.hpp"
 
-namespace mpxr {
+namespace forkxr {
 
 #define DEFINE_REGISTRY(T, name) \
     Registry<T>& name() {         \
@@ -105,9 +105,9 @@ XrResult enumerate(const std::vector<T>& items, uint32_t capacity, uint32_t* cou
 
 }  // namespace
 
-}  // namespace mpxr
+}  // namespace forkxr
 
-using namespace mpxr;
+using namespace forkxr;
 
 XRAPI_ATTR XrResult XRAPI_CALL xrEnumerateApiLayerProperties(uint32_t, uint32_t* countOutput, XrApiLayerProperties*) {
     if (!countOutput) return XR_ERROR_VALIDATION_FAILURE;

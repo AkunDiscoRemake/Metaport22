@@ -13,7 +13,7 @@ do Quest dele e os apps que ele comprou.
 | Parte | Estado |
 |---|---|
 | Núcleo de tracking em C++: cabeça 6DoF (ARCore + giroscópio), fusão Joy-Con + mãos, hand joints do OpenXR | ✅ implementado, 31 testes |
-| Runtime OpenXR (`libmetaport_openxr.so`): sessão, espaços, actions com perfil Oculus Touch, `XR_EXT_hand_tracking`, swapchains GLES, compositor Cardboard com distorção de lente e reprojeção rotacional | ✅ implementado, teste ponta a ponta; compila para arm64 com o NDK |
+| ForkXR, o runtime OpenXR próprio (`libforkxr.so`): sessão, espaços, actions com perfil Oculus Touch, `XR_EXT_hand_tracking`, swapchains GLES, compositor Cardboard com distorção de lente e reprojeção rotacional | ✅ implementado, teste ponta a ponta; compila para arm64 com o NDK |
 | Vault: importa, verifica (SHA-256) e cataloga os arquivos do usuário | ✅ 7 testes |
 | Firmware: extrator de OTA `payload.bin` + analisador ELF + relatório de compatibilidade (o que carrega no celular, o que precisa de shim) | ✅ 7 testes + CLI |
 | Leitor de sistema de arquivos (EROFS/ext4) no próprio celular | ⏳ por enquanto: montar a imagem no PC |
@@ -32,7 +32,7 @@ Detalhes e roteiro em [docs/PORT.md](docs/PORT.md).
  App de VR do Quest (APK do usuário)
         │  OpenXR
         ▼
- libmetaport_openxr.so  ──── lê ────►  memória compartilhada  ◄── escreve ── serviço Metaport
+ libforkxr.so  ──── lê ────►  memória compartilhada  ◄── escreve ── serviço Metaport
  (runtime, dentro do app)                (TrackingFrame)                    ├─ ARCore: cabeça 6DoF
         │                                                                   ├─ giroscópio do celular
         ▼                                                                   ├─ Joy-Con: IMU + botões

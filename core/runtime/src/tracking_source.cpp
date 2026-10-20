@@ -17,7 +17,7 @@
 
 #include "runtime.hpp"
 
-namespace mpxr {
+namespace forkxr {
 
 namespace {
 
@@ -121,4 +121,4 @@ private:
 
 std::unique_ptr<Compositor> createNullCompositor(float refreshHz) { return std::make_unique<NullCompositor>(refreshHz); }
 
-}  // namespace mpxr
+}  // namespace forkxr

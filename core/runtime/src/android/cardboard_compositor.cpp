@@ -21,7 +21,7 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, "MetaportXR", __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, "MetaportXR", __VA_ARGS__)
 
-namespace mpxr {
+namespace forkxr {
 
 namespace {
 
@@ -306,4 +306,4 @@ std::unique_ptr<Compositor> createCardboardCompositor(JavaVM* vm, jobject activi
     return c;
 }
 
-}  // namespace mpxr
+}  // namespace forkxr

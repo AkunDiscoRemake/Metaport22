@@ -1,4 +1,4 @@
-// Metaport OpenXR runtime — internal object model.
+// ForkXR — Metaport's open source XR runtime. Internal object model.
 //
 // The runtime is loaded by the OpenXR loader inside the VR app's process. It reads the fused
 // tracking state that the Metaport service publishes in shared memory and presents the app's
@@ -31,7 +31,7 @@
 #include "metaport/math.hpp"
 #include "metaport/shared_state.hpp"
 
-namespace mpxr {
+namespace forkxr {
 
 using metaport::Pose;
 using metaport::Quat;
@@ -40,8 +40,8 @@ using metaport::TrackingFrame;
 using metaport::Vec3;
 
 constexpr XrSystemId kSystemId = 1;
-constexpr const char* kRuntimeName = "Metaport (Cardboard)";
-constexpr const char* kSystemName = "Metaport Cardboard Headset";
+constexpr const char* kRuntimeName = "ForkXR";
+constexpr const char* kSystemName = "ForkXR Cardboard / VR Box";
 
 // ---------------------------------------------------------------------------------------------
 // Tracking source: where the runtime gets the TrackingFrame from.
@@ -283,7 +283,7 @@ bool resolveBinding(const std::string& profile, const std::string& path, XrActio
 bool isKnownProfile(const std::string& profile);
 void updateActionStates(Session* s, const XrActionsSyncInfo* info);
 
-}  // namespace mpxr
+}  // namespace forkxr
 
 // Entry points implemented across the translation units (OpenXR signatures).
 #define MPXR_FUNCTIONS(_)                         \

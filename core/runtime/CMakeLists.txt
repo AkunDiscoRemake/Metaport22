@@ -1,4 +1,4 @@
-# Metaport OpenXR runtime (libmetaport_openxr.so).
+# Metaport OpenXR runtime (libforkxr.so).
 include(FetchContent)
 
 if(NOT METAPORT_OPENXR_INCLUDE_DIR)
@@ -24,27 +24,27 @@ if(ANDROID)
     list(APPEND RUNTIME_SOURCES src/android/cardboard_compositor.cpp)
 endif()
 
-add_library(metaport_openxr SHARED ${RUNTIME_SOURCES})
-target_include_directories(metaport_openxr PRIVATE ${METAPORT_OPENXR_INCLUDE_DIR} src)
-target_compile_definitions(metaport_openxr PRIVATE XR_EXTENSION_PROTOTYPES)
-target_link_libraries(metaport_openxr PRIVATE metaport_tracking)
+add_library(forkxr SHARED ${RUNTIME_SOURCES})
+target_include_directories(forkxr PRIVATE ${METAPORT_OPENXR_INCLUDE_DIR} src)
+target_compile_definitions(forkxr PRIVATE XR_EXTENSION_PROTOTYPES)
+target_link_libraries(forkxr PRIVATE metaport_tracking)
 # Only xrNegotiateLoaderRuntimeInterface is exported. Everything else stays hidden so our xr*
 # symbols never interpose with (or get interposed by) the app's own libopenxr_loader.so.
-set_target_properties(metaport_openxr PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON)
+set_target_properties(forkxr PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON)
 if(NOT MSVC)
-    target_compile_options(metaport_openxr PRIVATE -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers)
-    target_link_options(metaport_openxr PRIVATE -Wl,-Bsymbolic -Wl,--no-undefined -Wl,--exclude-libs,ALL)
+    target_compile_options(forkxr PRIVATE -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers)
+    target_link_options(forkxr PRIVATE -Wl,-Bsymbolic -Wl,--no-undefined -Wl,--exclude-libs,ALL)
 endif()
 if(ANDROID)
-    target_link_libraries(metaport_openxr PRIVATE android log EGL GLESv3)
+    target_link_libraries(forkxr PRIVATE android log EGL GLESv3)
 endif()
 
 if(METAPORT_BUILD_TESTS AND NOT ANDROID)
-    add_executable(metaport_runtime_tests tests/runtime_tests.cpp)
-    target_include_directories(metaport_runtime_tests PRIVATE ${METAPORT_OPENXR_INCLUDE_DIR})
-    target_link_libraries(metaport_runtime_tests PRIVATE metaport_tracking ${CMAKE_DL_LIBS})
-    target_compile_definitions(metaport_runtime_tests PRIVATE
-        METAPORT_RUNTIME_PATH="$<TARGET_FILE:metaport_openxr>")
-    add_dependencies(metaport_runtime_tests metaport_openxr)
-    add_test(NAME metaport_runtime_tests COMMAND metaport_runtime_tests)
+    add_executable(forkxr_runtime_tests tests/runtime_tests.cpp)
+    target_include_directories(forkxr_runtime_tests PRIVATE ${METAPORT_OPENXR_INCLUDE_DIR})
+    target_link_libraries(forkxr_runtime_tests PRIVATE metaport_tracking ${CMAKE_DL_LIBS})
+    target_compile_definitions(forkxr_runtime_tests PRIVATE
+        FORKXR_RUNTIME_PATH="$<TARGET_FILE:forkxr>")
+    add_dependencies(forkxr_runtime_tests forkxr)
+    add_test(NAME forkxr_runtime_tests COMMAND forkxr_runtime_tests)
 endif()

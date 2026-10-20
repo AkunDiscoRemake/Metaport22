@@ -6,7 +6,7 @@
 
 #include "runtime.hpp"
 
-namespace mpxr {
+namespace forkxr {
 
 namespace {
 
@@ -266,9 +266,9 @@ void updateActionStates(Session* s, const XrActionsSyncInfo* info) {
     }
 }
 
-}  // namespace mpxr
+}  // namespace forkxr
 
-using namespace mpxr;
+using namespace forkxr;
 
 XRAPI_ATTR XrResult XRAPI_CALL xrCreateActionSet(XrInstance instance, const XrActionSetCreateInfo* info, XrActionSet* out) {
     Instance* inst = fromHandle<Instance>(instance);

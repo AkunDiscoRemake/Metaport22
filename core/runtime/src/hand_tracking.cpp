@@ -3,7 +3,7 @@
 // Horizon OS firmware once its compatibility shim exists.
 #include "runtime.hpp"
 
-using namespace mpxr;
+using namespace forkxr;
 
 XRAPI_ATTR XrResult XRAPI_CALL xrCreateHandTrackerEXT(XrSession session, const XrHandTrackerCreateInfoEXT* info,
                                                       XrHandTrackerEXT* out) {
