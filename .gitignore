@@ -1,0 +1,13 @@
+# Build outputs
+build/
+.gradle/
+.cxx/
+.externalNativeBuild/
+local.properties
+*.iml
+.idea/
+
+# User firmware and extracted content must never be committed
+*.img
+payload.bin
+/firmware-work/
